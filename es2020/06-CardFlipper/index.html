@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카드 맞추기</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-rows: repeat(3, 300px);
+        grid-template-columns: repeat(4, 200px);
+      }
+      .item {
+        margin: 0 10px 10px 0;
+        transition: all 0.5s;
+      }
+
+      .item.back {
+        background: #888;
+      }
+      .item.front {
+        border: 1px solid black;
+        transform: rotateY(-180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="item1" class="item back"></div>
+      <div id="item2" class="item back"></div>
+      <div id="item3" class="item back"></div>
+      <div id="item4" class="item back"></div>
+      <div id="item5" class="item back"></div>
+      <div id="item6" class="item back"></div>
+      <div id="item7" class="item back"></div>
+      <div id="item8" class="item back"></div>
+      <div id="item9" class="item back"></div>
+      <div id="item10" class="item back"></div>
+      <div id="item11" class="item back"></div>
+      <div id="item12" class="item back"></div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
