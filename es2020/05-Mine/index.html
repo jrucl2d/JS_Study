@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>지뢰찾기</title>
     <style>
+      table {
+        border-collapse: collapse;
+      }
       td {
+        width: 40px;
+        height: 40px;
         border: 1px solid black;
+        text-align: center;
+        background: #444;
+      }
+      .opened {
+        background: white;
       }
     </style>
   </head>
   <body>
-    <input type="number" id="hor" placeholder="가로" />
-    <input type="number" id="ver" placeholder="세로" />
-    <input type="number" id="mine" placeholder="지뢰" />
+    <input type="number" id="hor" placeholder="가로" value="10" />
+    <input type="number" id="ver" placeholder="세로" value="10" />
+    <input type="number" id="mine" placeholder="지뢰" value="20" />
     <button id="exec">실행</button>
     <table id="table">
       <thead>
@@ -23,6 +33,6 @@
       </thead>
       <tbody></tbody>
     </table>
-    <script src="index.hs"></script>
+    <script src="index.js"></script>
   </body>
 </html>
