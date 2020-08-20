@@ -1,7 +1,10 @@
 const tbody = document.querySelector("#table tbody");
-const hor = +document.querySelector("#hor").value;
-const ver = +document.querySelector("#ver").value;
-const mine = +document.querySelector("#mine").value;
+const horTag = document.querySelector("#hor");
+const verTag = document.querySelector("#ver");
+const mineTag = document.querySelector("#mine");
+let hor;
+let ver;
+let mine;
 const result = document.querySelector("#result");
 let overFlag = false;
 
@@ -14,6 +17,9 @@ const code = {
 let opnedCount = 0;
 
 document.querySelector("#exec").addEventListener("click", () => {
+  hor = +horTag.value;
+  ver = +verTag.value;
+  mine = +mineTag.value;
   // 초기화
   tbody.innerHTML = "";
   result.textContent = "";
