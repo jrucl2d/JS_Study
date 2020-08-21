@@ -34,7 +34,7 @@ function render() {
   let win = false;
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
-      if (data[i][j] == 1024) {
+      if (data[i][j] == 2048) {
         win = true;
         break;
       }
