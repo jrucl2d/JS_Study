@@ -71,6 +71,9 @@ table.addEventListener("mouseup", (e) => {
     end = [e.clientX, e.clientY];
     let movedX = end[0] - start[0];
     let movedY = end[1] - start[1];
+    if (movedX == movedY && movedX == 0) {
+      return;
+    }
     let direction;
     if (movedY < 0 && Math.abs(movedX) < Math.abs(movedY)) {
       direction = "u";
