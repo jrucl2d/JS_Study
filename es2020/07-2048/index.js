@@ -31,10 +31,21 @@ function render() {
     });
   });
   let candidate = [];
+  let win = false;
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
+      if (data[i][j] == 1024) {
+        win = true;
+        break;
+      }
       if (data[i][j] === 0) candidate.push([i, j]);
     }
+    if (win) break;
+  }
+  if (win) {
+    alert("승리!");
+    init();
+    return;
   }
   if (candidate.length === 0) {
     alert("패배...");
@@ -77,11 +88,48 @@ table.addEventListener("mouseup", (e) => {
 // 숫자 이동
 function move(direction) {
   let newData = [[], [], [], []];
-  console.log(data, newData);
   switch (direction) {
     case "u":
+      for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+          if (data[j][i] === 0) continue;
+          newData[i].push(data[j][i]);
+        }
+      }
+      // 겹침 파악
+      for (let i = 0; i < 4; i++) {
+        if (newData[i].length >= 2 && newData[i][newData[i].length - 1] == newData[i][newData[i].length - 2]) {
+          newData[i][newData[i].length - 2] *= 2;
+          newData[i].length -= 1;
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        while (newData[i].length != 4) {
+          newData[i].push(0);
+        }
+      }
       break;
     case "d":
+      for (let i = 0; i < 4; i++) {
+        for (let j = 3; j >= 0; j--) {
+          if (data[j][i] === 0) continue;
+          newData[i].unshift(data[j][i]);
+        }
+      }
+      // 겹침 파악
+      for (let i = 0; i < 4; i++) {
+        if (newData[i].length >= 2 && newData[i][0] == newData[i][1]) {
+          newData[i].shift();
+          newData[i][0] *= 2;
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        while (newData[i].length != 4) {
+          newData[i].unshift(0);
+        }
+      }
+      console.log(newData);
+
       break;
     case "l":
       for (let i = 0; i < 4; i++) {
@@ -97,16 +145,50 @@ function move(direction) {
           newData[i].length -= 1;
         }
       }
+      for (let i = 0; i < 4; i++) {
+        while (newData[i].length != 4) {
+          newData[i].push(0);
+        }
+      }
       break;
     case "r":
+      for (let i = 0; i < 4; i++) {
+        for (let j = 3; j >= 0; j--) {
+          if (data[i][j] === 0) continue;
+          newData[i].unshift(data[i][j]);
+        }
+      }
+      // 겹침 파악
+      for (let i = 0; i < 4; i++) {
+        if (newData[i].length >= 2 && newData[i][0] == newData[i][1]) {
+          newData[i].shift();
+          newData[i][0] *= 2;
+        }
+      }
+      for (let i = 0; i < 4; i++) {
+        while (newData[i].length != 4) {
+          newData[i].unshift(0);
+        }
+      }
       break;
   }
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 4; j++) {
-      if (!newData[i][j]) data[i][j] = 0;
-      else data[i][j] = newData[i][j];
+
+  if (direction === "l" || direction === "r") {
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (!newData[i][j]) data[i][j] = 0;
+        else data[i][j] = newData[i][j];
+      }
+    }
+  } else {
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (!newData[i][j]) data[j][i] = 0;
+        else data[j][i] = newData[i][j];
+      }
     }
   }
-  console.log(data);
+
+  //   console.log(newData, data);
   render();
 }
